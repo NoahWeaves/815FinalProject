@@ -1,0 +1,123 @@
+Warning: The cache directory for DeepSpeed Triton autotune, /home/noah.weaver/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+[2025-11-22 00:27:41,938] [INFO] [runner.py:630:main] cmd = /home/noah.weaver/miniconda/envs/megatron/bin/python3.9 -u -m deepspeed.launcher.launch --world_info=eyJ3cy1sNi0wMTkiOiBbMF0sICJ3cy1sNi0wMTQiOiBbMF19 --master_addr=ws-l6-019 --master_port=12345 --node_rank=1 --enable_each_rank_log=None --log_level=info /home/noah.weaver/Megatron-DeepSpeed/pretrain_gpt.py --tensor-model-parallel-size 1 --pipeline-model-parallel-size 1 --num-layers 12 --hidden-size 512 --num-attention-heads 8 --seq-length 512 --loss-scale 12 --max-position-embeddings 512 --micro-batch-size 2 --global-batch-size 8 --train-iters 100 --lr 6.0e-5 --min-lr 6.0e-6 --lr-decay-style cosine --log-interval 10 --eval-iters 0 --eval-interval 10000 --data-path /home/noah.weaver/gpt/my-gpt2_text_document --vocab-file /home/noah.weaver/gpt/gpt2-vocab.json --merge-file /home/noah.weaver/gpt/gpt2-merges.txt --split 98,2,0 --clip-grad 1.0 --weight-decay 0.1 --adam-beta1 0.9 --adam-beta2 0.95 --init-method-std 0.006 --fp16 --deepspeed-activation-checkpointing --zero-stage=1 --deepspeed_config=/home/noah.weaver/ds_config_zero1.json --no-pipeline-parallel --deepspeed --checkpoint-activations --timing-log-level 2 --vocab-size 50000 --no-masked-softmax-fusion
+Warning: The cache directory for DeepSpeed Triton autotune, /home/noah.weaver/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+[2025-11-22 00:27:46,775] [INFO] [launch.py:155:main] 1 NCCL_DEBUG=WARN
+[2025-11-22 00:27:46,775] [INFO] [launch.py:162:main] WORLD INFO DICT: {'ws-l6-019': [0], 'ws-l6-014': [0]}
+[2025-11-22 00:27:46,775] [INFO] [launch.py:168:main] nnodes=2, num_local_procs=1, node_rank=1
+[2025-11-22 00:27:46,775] [INFO] [launch.py:179:main] global_rank_mapping=defaultdict(<class 'list'>, {'ws-l6-019': [0], 'ws-l6-014': [1]})
+[2025-11-22 00:27:46,775] [INFO] [launch.py:180:main] dist_world_size=2
+[2025-11-22 00:27:46,775] [INFO] [launch.py:184:main] Setting CUDA_VISIBLE_DEVICES=0
+[2025-11-22 00:27:46,789] [INFO] [launch.py:272:main] process 3460907 spawned with command: ['/home/noah.weaver/miniconda/envs/megatron/bin/python3.9', '-u', '/home/noah.weaver/Megatron-DeepSpeed/pretrain_gpt.py', '--local_rank=0', '--tensor-model-parallel-size', '1', '--pipeline-model-parallel-size', '1', '--num-layers', '12', '--hidden-size', '512', '--num-attention-heads', '8', '--seq-length', '512', '--loss-scale', '12', '--max-position-embeddings', '512', '--micro-batch-size', '2', '--global-batch-size', '8', '--train-iters', '100', '--lr', '6.0e-5', '--min-lr', '6.0e-6', '--lr-decay-style', 'cosine', '--log-interval', '10', '--eval-iters', '0', '--eval-interval', '10000', '--data-path', '/home/noah.weaver/gpt/my-gpt2_text_document', '--vocab-file', '/home/noah.weaver/gpt/gpt2-vocab.json', '--merge-file', '/home/noah.weaver/gpt/gpt2-merges.txt', '--split', '98,2,0', '--clip-grad', '1.0', '--weight-decay', '0.1', '--adam-beta1', '0.9', '--adam-beta2', '0.95', '--init-method-std', '0.006', '--fp16', '--deepspeed-activation-checkpointing', '--zero-stage=1', '--deepspeed_config=/home/noah.weaver/ds_config_zero1.json', '--no-pipeline-parallel', '--deepspeed', '--checkpoint-activations', '--timing-log-level', '2', '--vocab-size', '50000', '--no-masked-softmax-fusion']
+Warning: The cache directory for DeepSpeed Triton autotune, /home/noah.weaver/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+--------------------------------------------------
+DeepSpeed C++/CUDA extension op report
+--------------------------------------------------
+NOTE: Ops not installed will be just-in-time (JIT) compiled at
+      runtime if needed. Op compatibility means that your system
+      meet the required dependencies to JIT install the op.
+--------------------------------------------------
+JIT compiled ops requires ninja
+ninja .................. [92m[OKAY][0m
+--------------------------------------------------
+op name ................ installed .. compatible
+--------------------------------------------------
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+async_io ............... [93m[NO][0m ....... [93m[NO][0m
+fused_adam ............. [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adam ............... [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adagrad ............ [93m[NO][0m ....... [92m[OKAY][0m
+cpu_lion ............... [93m[NO][0m ....... [92m[OKAY][0m
+dc ..................... [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+evoformer_attn ......... [93m[NO][0m ....... [93m[NO][0m
+fp_quantizer ........... [93m[NO][0m ....... [92m[OKAY][0m
+fused_lamb ............. [93m[NO][0m ....... [92m[OKAY][0m
+fused_lion ............. [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m gds requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m gds: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+gds .................... [93m[NO][0m ....... [93m[NO][0m
+transformer_inference .. [93m[NO][0m ....... [92m[OKAY][0m
+inference_core_ops ..... [93m[NO][0m ....... [92m[OKAY][0m
+cutlass_ops ............ [93m[NO][0m ....... [92m[OKAY][0m
+quantizer .............. [93m[NO][0m ....... [92m[OKAY][0m
+ragged_device_ops ...... [93m[NO][0m ....... [92m[OKAY][0m
+ragged_ops ............. [93m[NO][0m ....... [92m[OKAY][0m
+random_ltd ............. [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.2.0), only 1.0.0 is known to be compatible
+sparse_attn ............ [93m[NO][0m ....... [93m[NO][0m
+spatial_inference ...... [93m[NO][0m ....... [92m[OKAY][0m
+transformer ............ [93m[NO][0m ....... [92m[OKAY][0m
+stochastic_transformer . [93m[NO][0m ....... [92m[OKAY][0m
+utils .................. [93m[NO][0m ....... [92m[OKAY][0m
+--------------------------------------------------
+DeepSpeed general environment info:
+torch install path ............... ['/home/noah.weaver/miniconda/envs/megatron/lib/python3.9/site-packages/torch']
+torch version .................... 2.6.0+cu124
+deepspeed install path ........... ['/home/noah.weaver/miniconda/envs/megatron/lib/python3.9/site-packages/deepspeed']
+deepspeed info ................... 0.18.2, unknown, unknown
+torch cuda version ............... 12.4
+torch hip version ................ None
+nvcc version ..................... 12.4
+deepspeed wheel compiled w. ...... torch 2.6, cuda 12.4
+shared memory (/dev/shm) size .... 31.33 GB
+**** Git info for Megatron: git_hash=unknown git_branch=unknown ****
+WARNING: WANDB writing requested but no legit wandb project or experiment name provided, therefore no WANDB logs will be written according to random generated project or experiment name.
+NCCL version 2.21.5+cuda12.4
+(min, max) time across ranks (ms):
+    model-and-optimizer-setup ......................: (1529.49, 1842.92)
+    train/valid/test-data-iterators-setup ..........: (166.27, 264.23)
+ iteration       10/     100 | consumed samples:           80 | consumed tokens:        40960 | elapsed time per iteration (ms): 1890.3 | learning rate: 5.868E-05 | global batch size:     8 | lm loss: 1.051027E+01 | loss scale: 4096.0 | actual seqlen:   512 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 4.232 | tokens per gpu per second (tgs): 1083.403 | TFLOPs: 0.60 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (1221.36, 1221.50)
+    batch-generator ................................: (1.80, 1.83)
+    optimizer ......................................: (667.71, 667.81)
+ iteration       20/     100 | consumed samples:          160 | consumed tokens:        81920 | elapsed time per iteration (ms): 1761.1 | learning rate: 5.484E-05 | global batch size:     8 | lm loss: 1.017243E+01 | loss scale: 4096.0 | actual seqlen:   512 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 4.543 | tokens per gpu per second (tgs): 1162.896 | TFLOPs: 0.65 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (1198.79, 1198.98)
+    batch-generator ................................: (1.26, 1.28)
+    optimizer ......................................: (560.73, 560.97)
+ iteration       30/     100 | consumed samples:          240 | consumed tokens:       122880 | elapsed time per iteration (ms): 1760.5 | learning rate: 4.887E-05 | global batch size:     8 | lm loss: 9.861943E+00 | loss scale: 4096.0 | actual seqlen:   512 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 4.544 | tokens per gpu per second (tgs): 1163.334 | TFLOPs: 0.65 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (1197.92, 1198.10)
+    batch-generator ................................: (1.26, 1.29)
+    optimizer ......................................: (561.08, 561.10)
+ iteration       40/     100 | consumed samples:          320 | consumed tokens:       163840 | elapsed time per iteration (ms): 1761.1 | learning rate: 4.134E-05 | global batch size:     8 | lm loss: 9.633111E+00 | loss scale: 4096.0 | actual seqlen:   512 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 4.543 | tokens per gpu per second (tgs): 1162.923 | TFLOPs: 0.65 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (1198.74, 1199.00)
+    batch-generator ................................: (1.27, 1.27)
+    optimizer ......................................: (560.90, 560.94)
+ iteration       50/     100 | consumed samples:          400 | consumed tokens:       204800 | elapsed time per iteration (ms): 1760.7 | learning rate: 3.300E-05 | global batch size:     8 | lm loss: 9.461874E+00 | loss scale: 4096.0 | actual seqlen:   512 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 4.544 | tokens per gpu per second (tgs): 1163.180 | TFLOPs: 0.65 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (1197.49, 1197.57)
+    batch-generator ................................: (1.25, 1.28)
+    optimizer ......................................: (561.80, 561.83)
+ iteration       60/     100 | consumed samples:          480 | consumed tokens:       245760 | elapsed time per iteration (ms): 1760.7 | learning rate: 2.466E-05 | global batch size:     8 | lm loss: 9.291737E+00 | loss scale: 4096.0 | actual seqlen:   512 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 4.544 | tokens per gpu per second (tgs): 1163.169 | TFLOPs: 0.65 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (1198.06, 1198.35)
+    batch-generator ................................: (1.27, 1.28)
+    optimizer ......................................: (561.13, 561.30)
+ iteration       70/     100 | consumed samples:          560 | consumed tokens:       286720 | elapsed time per iteration (ms): 1762.5 | learning rate: 1.713E-05 | global batch size:     8 | lm loss: 9.191398E+00 | loss scale: 4096.0 | actual seqlen:   512 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 4.539 | tokens per gpu per second (tgs): 1161.962 | TFLOPs: 0.65 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (1199.41, 1199.52)
+    batch-generator ................................: (1.27, 1.30)
+    optimizer ......................................: (561.68, 561.82)
+ iteration       80/     100 | consumed samples:          640 | consumed tokens:       327680 | elapsed time per iteration (ms): 1760.1 | learning rate: 1.116E-05 | global batch size:     8 | lm loss: 9.096234E+00 | loss scale: 4096.0 | actual seqlen:   512 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 4.545 | tokens per gpu per second (tgs): 1163.578 | TFLOPs: 0.65 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (1198.24, 1198.47)
+    batch-generator ................................: (1.26, 1.29)
+    optimizer ......................................: (560.34, 560.56)
+ iteration       90/     100 | consumed samples:          720 | consumed tokens:       368640 | elapsed time per iteration (ms): 1761.5 | learning rate: 7.321E-06 | global batch size:     8 | lm loss: 9.043694E+00 | loss scale: 4096.0 | actual seqlen:   512 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 4.542 | tokens per gpu per second (tgs): 1162.643 | TFLOPs: 0.65 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (1199.27, 1199.39)
+    batch-generator ................................: (1.27, 1.29)
+    optimizer ......................................: (560.83, 560.93)
+ iteration      100/     100 | consumed samples:          800 | consumed tokens:       409600 | elapsed time per iteration (ms): 1761.1 | learning rate: 6.000E-06 | global batch size:     8 | lm loss: 8.981890E+00 | loss scale: 4096.0 | actual seqlen:   512 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 4.543 | tokens per gpu per second (tgs): 1162.906 | TFLOPs: 0.65 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (1199.18, 1199.36)
+    batch-generator ................................: (1.30, 1.41)
+    optimizer ......................................: (560.49, 560.58)
+[2025-11-22 00:30:55,977] [INFO] [launch.py:367:main] Process 3460907 exits successfully.

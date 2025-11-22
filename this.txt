@@ -1,0 +1,13 @@
+/home/noah.weaver/output/baseline_pp1_nl12_gb8/training_log_rank1.txt'
+
+
+/home/noah.weaver/output/pipeline_pp2_nl12_gb8/training_log_rank1.txt'
+
+
+/home/noah.weaver/output/zero_stage1_nl12_gb8/training_log_rank1.txt
+
+
+/home/noah.weaver/output/zero_stage2_nl12_gb8/training_log_rank1.txt
+
+
+/home/noah.weaver/output/zero_stage3_nl12_gb8/training_log_rank0.txt

@@ -1,0 +1,194 @@
++ workdir=/home/noah.weaver
++ master_node=ws-l6-019
++ worker_node=ws-l6-014
++ TP=1
++ PP=1
++ NLAYERS=24
++ HIDDEN=1024
++ NUM_HEADS=16
++ GLOBAL_BATCH=16
++ MICRO_BATCH=2
++ TRAIN_ITERS=50
++ SEQ_LENGTH=1024
++ ZERO_STAGE=3
++ BASE_PATH=/home/noah.weaver/gpt
++ DATA_PATH=/home/noah.weaver/gpt/my-gpt2_text_document
++ DS_CONFIG=/home/noah.weaver/ds_config_large_zero3.json
++ HOST_FILE=/home/noah.weaver/hostfile
++ OUTPUT_DIR=/home/noah.weaver/output/LARGE_zero_stage3_nl24_hs1024
++ export CUDA_DEVICE_MAX_CONNECTIONS=1
++ CUDA_DEVICE_MAX_CONNECTIONS=1
++ export NCCL_DEBUG=WARN
++ NCCL_DEBUG=WARN
++ export MAX_JOBS=10
++ MAX_JOBS=10
++ mkdir -p /home/noah.weaver/output/LARGE_zero_stage3_nl24_hs1024
++ mkdir -p /home/noah.weaver/gpt
++ '[' '!' -d /home/noah.weaver/gpt/my-gpt2_text_document ']'
++ echo 'Copying dataset...'
+Copying dataset...
++ cp -r /l/users/omar.sayedelahl/Datasets/gpt/gpt2-merges.txt /l/users/omar.sayedelahl/Datasets/gpt/gpt2-vocab.json /l/users/omar.sayedelahl/Datasets/gpt/my-gpt2_text_document.bin /l/users/omar.sayedelahl/Datasets/gpt/my-gpt2_text_document.idx /home/noah.weaver/gpt/
++ cat
++ echo 'Hostfile created:'
+Hostfile created:
++ cat /home/noah.weaver/hostfile
+ws-l6-019 slots=1
+ws-l6-014 slots=1
++ cat
++ echo 'DeepSpeed config created (ZeRO Stage 3)'
+DeepSpeed config created (ZeRO Stage 3)
++ ds_args=
++ ds_args=' --deepspeed '
++ ds_args=' --no-pipeline-parallel  --deepspeed '
++ ds_args=' --deepspeed_config=/home/noah.weaver/ds_config_large_zero3.json  --no-pipeline-parallel  --deepspeed '
++ ds_args=' --zero-stage=3  --deepspeed_config=/home/noah.weaver/ds_config_large_zero3.json  --no-pipeline-parallel  --deepspeed '
++ ds_args=' --deepspeed-activation-checkpointing  --zero-stage=3  --deepspeed_config=/home/noah.weaver/ds_config_large_zero3.json  --no-pipeline-parallel  --deepspeed '
+++ hostname
++ CURRENT_NODE=ws-l6-014
++ '[' ws-l6-014 == ws-l6-019 ']'
++ NODE_RANK=1
++ echo 'Running as WORKER node (rank 1)'
+Running as WORKER node (rank 1)
++ echo ========================================================================
+========================================================================
++ echo 'LARGE Model ZeRO Stage 3 Training (512M parameters)'
+LARGE Model ZeRO Stage 3 Training (512M parameters)
++ echo ========================================================================
+========================================================================
++ echo Configuration:
+Configuration:
++ echo '  Model: GPT-2 Large (24 layers, 1024 hidden)'
+  Model: GPT-2 Large (24 layers, 1024 hidden)
++ echo '  Parameters: ~512M'
+  Parameters: ~512M
++ echo '  ZeRO Stage: 3 (Full Parameter + Optimizer + Gradient Partitioning)'
+  ZeRO Stage: 3 (Full Parameter + Optimizer + Gradient Partitioning)
++ echo '  Data parallel: 2 GPUs'
+  Data parallel: 2 GPUs
++ echo '  Global batch: 16'
+  Global batch: 16
++ echo '  Micro batch: 2'
+  Micro batch: 2
++ echo '  Training iterations: 50'
+  Training iterations: 50
++ echo '  Sequence length: 1024'
+  Sequence length: 1024
++ echo '  Memory savings: ~N_gpu times (linear scaling with N_gpu)'
+  Memory savings: ~N_gpu times (linear scaling with N_gpu)
++ echo ========================================================================
+========================================================================
++ deepspeed --num_gpus 1 --num_nodes 2 --hostfile /home/noah.weaver/hostfile --no_ssh --node_rank=1 --master_addr ws-l6-019 --master_port=12345 /home/noah.weaver/Megatron-DeepSpeed/pretrain_gpt.py --tensor-model-parallel-size 1 --pipeline-model-parallel-size 1 --num-layers 24 --hidden-size 1024 --num-attention-heads 16 --seq-length 1024 --loss-scale 12 --max-position-embeddings 1024 --micro-batch-size 2 --global-batch-size 16 --train-iters 50 --lr 6.0e-5 --min-lr 6.0e-6 --lr-decay-style cosine --log-interval 10 --eval-iters 0 --eval-interval 10000 --data-path /home/noah.weaver/gpt/my-gpt2_text_document --vocab-file /home/noah.weaver/gpt/gpt2-vocab.json --merge-file /home/noah.weaver/gpt/gpt2-merges.txt --split 98,2,0 --clip-grad 1.0 --weight-decay 0.1 --adam-beta1 0.9 --adam-beta2 0.95 --init-method-std 0.006 --fp16 --deepspeed-activation-checkpointing --zero-stage=3 --deepspeed_config=/home/noah.weaver/ds_config_large_zero3.json --no-pipeline-parallel --deepspeed --checkpoint-activations --timing-log-level 2 --vocab-size 50000 --no-masked-softmax-fusion
++ tee /home/noah.weaver/output/LARGE_zero_stage3_nl24_hs1024/training_log_rank1.txt
+Warning: The cache directory for DeepSpeed Triton autotune, /home/noah.weaver/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+[2025-11-22 02:25:22,275] [INFO] [runner.py:630:main] cmd = /home/noah.weaver/miniconda/envs/megatron/bin/python3.9 -u -m deepspeed.launcher.launch --world_info=eyJ3cy1sNi0wMTkiOiBbMF0sICJ3cy1sNi0wMTQiOiBbMF19 --master_addr=ws-l6-019 --master_port=12345 --node_rank=1 --enable_each_rank_log=None --log_level=info /home/noah.weaver/Megatron-DeepSpeed/pretrain_gpt.py --tensor-model-parallel-size 1 --pipeline-model-parallel-size 1 --num-layers 24 --hidden-size 1024 --num-attention-heads 16 --seq-length 1024 --loss-scale 12 --max-position-embeddings 1024 --micro-batch-size 2 --global-batch-size 16 --train-iters 50 --lr 6.0e-5 --min-lr 6.0e-6 --lr-decay-style cosine --log-interval 10 --eval-iters 0 --eval-interval 10000 --data-path /home/noah.weaver/gpt/my-gpt2_text_document --vocab-file /home/noah.weaver/gpt/gpt2-vocab.json --merge-file /home/noah.weaver/gpt/gpt2-merges.txt --split 98,2,0 --clip-grad 1.0 --weight-decay 0.1 --adam-beta1 0.9 --adam-beta2 0.95 --init-method-std 0.006 --fp16 --deepspeed-activation-checkpointing --zero-stage=3 --deepspeed_config=/home/noah.weaver/ds_config_large_zero3.json --no-pipeline-parallel --deepspeed --checkpoint-activations --timing-log-level 2 --vocab-size 50000 --no-masked-softmax-fusion
+Warning: The cache directory for DeepSpeed Triton autotune, /home/noah.weaver/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+[2025-11-22 02:25:27,194] [INFO] [launch.py:155:main] 1 NCCL_DEBUG=WARN
+[2025-11-22 02:25:27,194] [INFO] [launch.py:162:main] WORLD INFO DICT: {'ws-l6-019': [0], 'ws-l6-014': [0]}
+[2025-11-22 02:25:27,194] [INFO] [launch.py:168:main] nnodes=2, num_local_procs=1, node_rank=1
+[2025-11-22 02:25:27,194] [INFO] [launch.py:179:main] global_rank_mapping=defaultdict(<class 'list'>, {'ws-l6-019': [0], 'ws-l6-014': [1]})
+[2025-11-22 02:25:27,194] [INFO] [launch.py:180:main] dist_world_size=2
+[2025-11-22 02:25:27,194] [INFO] [launch.py:184:main] Setting CUDA_VISIBLE_DEVICES=0
+[2025-11-22 02:25:27,211] [INFO] [launch.py:272:main] process 3697067 spawned with command: ['/home/noah.weaver/miniconda/envs/megatron/bin/python3.9', '-u', '/home/noah.weaver/Megatron-DeepSpeed/pretrain_gpt.py', '--local_rank=0', '--tensor-model-parallel-size', '1', '--pipeline-model-parallel-size', '1', '--num-layers', '24', '--hidden-size', '1024', '--num-attention-heads', '16', '--seq-length', '1024', '--loss-scale', '12', '--max-position-embeddings', '1024', '--micro-batch-size', '2', '--global-batch-size', '16', '--train-iters', '50', '--lr', '6.0e-5', '--min-lr', '6.0e-6', '--lr-decay-style', 'cosine', '--log-interval', '10', '--eval-iters', '0', '--eval-interval', '10000', '--data-path', '/home/noah.weaver/gpt/my-gpt2_text_document', '--vocab-file', '/home/noah.weaver/gpt/gpt2-vocab.json', '--merge-file', '/home/noah.weaver/gpt/gpt2-merges.txt', '--split', '98,2,0', '--clip-grad', '1.0', '--weight-decay', '0.1', '--adam-beta1', '0.9', '--adam-beta2', '0.95', '--init-method-std', '0.006', '--fp16', '--deepspeed-activation-checkpointing', '--zero-stage=3', '--deepspeed_config=/home/noah.weaver/ds_config_large_zero3.json', '--no-pipeline-parallel', '--deepspeed', '--checkpoint-activations', '--timing-log-level', '2', '--vocab-size', '50000', '--no-masked-softmax-fusion']
+Warning: The cache directory for DeepSpeed Triton autotune, /home/noah.weaver/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+/home/noah.weaver/Megatron-DeepSpeed/megatron/core/tensor_parallel/layers.py:250: FutureWarning: `torch.cuda.amp.custom_fwd(args...)` is deprecated. Please use `torch.amp.custom_fwd(args..., device_type='cuda')` instead.
+  def forward(ctx, input, weight, bias, gradient_accumulation_fusion,
+/home/noah.weaver/Megatron-DeepSpeed/megatron/core/tensor_parallel/layers.py:288: FutureWarning: `torch.cuda.amp.custom_bwd(args...)` is deprecated. Please use `torch.amp.custom_bwd(args..., device_type='cuda')` instead.
+  def backward(ctx, grad_output):
+--------------------------------------------------
+DeepSpeed C++/CUDA extension op report
+--------------------------------------------------
+NOTE: Ops not installed will be just-in-time (JIT) compiled at
+      runtime if needed. Op compatibility means that your system
+      meet the required dependencies to JIT install the op.
+--------------------------------------------------
+JIT compiled ops requires ninja
+ninja .................. [92m[OKAY][0m
+--------------------------------------------------
+op name ................ installed .. compatible
+--------------------------------------------------
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+async_io ............... [93m[NO][0m ....... [93m[NO][0m
+fused_adam ............. [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adam ............... [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adagrad ............ [93m[NO][0m ....... [92m[OKAY][0m
+cpu_lion ............... [93m[NO][0m ....... [92m[OKAY][0m
+dc ..................... [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+evoformer_attn ......... [93m[NO][0m ....... [93m[NO][0m
+fp_quantizer ........... [93m[NO][0m ....... [92m[OKAY][0m
+fused_lamb ............. [93m[NO][0m ....... [92m[OKAY][0m
+fused_lion ............. [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m gds requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m gds: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+gds .................... [93m[NO][0m ....... [93m[NO][0m
+transformer_inference .. [93m[NO][0m ....... [92m[OKAY][0m
+inference_core_ops ..... [93m[NO][0m ....... [92m[OKAY][0m
+cutlass_ops ............ [93m[NO][0m ....... [92m[OKAY][0m
+quantizer .............. [93m[NO][0m ....... [92m[OKAY][0m
+ragged_device_ops ...... [93m[NO][0m ....... [92m[OKAY][0m
+ragged_ops ............. [93m[NO][0m ....... [92m[OKAY][0m
+random_ltd ............. [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.2.0), only 1.0.0 is known to be compatible
+sparse_attn ............ [93m[NO][0m ....... [93m[NO][0m
+spatial_inference ...... [93m[NO][0m ....... [92m[OKAY][0m
+transformer ............ [93m[NO][0m ....... [92m[OKAY][0m
+stochastic_transformer . [93m[NO][0m ....... [92m[OKAY][0m
+utils .................. [93m[NO][0m ....... [92m[OKAY][0m
+--------------------------------------------------
+DeepSpeed general environment info:
+torch install path ............... ['/home/noah.weaver/miniconda/envs/megatron/lib/python3.9/site-packages/torch']
+torch version .................... 2.6.0+cu124
+deepspeed install path ........... ['/home/noah.weaver/miniconda/envs/megatron/lib/python3.9/site-packages/deepspeed']
+deepspeed info ................... 0.18.2, unknown, unknown
+torch cuda version ............... 12.4
+torch hip version ................ None
+nvcc version ..................... 12.4
+deepspeed wheel compiled w. ...... torch 2.6, cuda 12.4
+shared memory (/dev/shm) size .... 31.33 GB
+fatal: not a git repository (or any parent up to mount point /)
+Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
+**** Git info for Megatron: git_hash=unknown git_branch=unknown ****
+WARNING: WANDB writing requested but no legit wandb project or experiment name provided, therefore no WANDB logs will be written according to random generated project or experiment name.
+[rank1]:[W1122 02:25:32.675092430 ProcessGroupNCCL.cpp:4561] [PG ID 0 PG GUID 0 Rank 1]  using GPU 0 to perform barrier as devices used by this process are currently unknown. This can potentially cause a hang if this rank to GPU mapping is incorrect. Specify device_ids in barrier() to force use of a particular device, or call init_process_group() with a device_id.
+[rank1]:[W1122 02:25:33.053501155 init.cpp:767] Warning: nvfuser is no longer supported in torch script, use _jit_set_nvfuser_enabled is deprecated and a no-op (function operator())
+NCCL version 2.21.5+cuda12.4
+(min, max) time across ranks (ms):
+    model-and-optimizer-setup ......................: (10819.07, 10819.22)
+    train/valid/test-data-iterators-setup ..........: (177.57, 264.71)
+ iteration       10/      50 | consumed samples:          160 | consumed tokens:       163840 | elapsed time per iteration (ms): 25162.7 | learning rate: 5.484E-05 | global batch size:    16 | lm loss: 1.052651E+01 | loss scale: 4096.0 | actual seqlen:  1024 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.636 | tokens per gpu per second (tgs): 325.561 | TFLOPs: 1.05 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (25078.16, 25078.24)
+    batch-generator ................................: (3.72, 3.89)
+    optimizer ......................................: (83.64, 83.73)
+ iteration       20/      50 | consumed samples:          320 | consumed tokens:       327680 | elapsed time per iteration (ms): 24327.8 | learning rate: 4.134E-05 | global batch size:    16 | lm loss: 9.846552E+00 | loss scale: 4096.0 | actual seqlen:  1024 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.658 | tokens per gpu per second (tgs): 336.734 | TFLOPs: 1.09 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (24260.53, 24260.57)
+    batch-generator ................................: (3.26, 3.43)
+    optimizer ......................................: (66.05, 66.11)
+ iteration       30/      50 | consumed samples:          480 | consumed tokens:       491520 | elapsed time per iteration (ms): 24303.0 | learning rate: 2.466E-05 | global batch size:    16 | lm loss: 9.464352E+00 | loss scale: 4096.0 | actual seqlen:  1024 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.658 | tokens per gpu per second (tgs): 337.078 | TFLOPs: 1.09 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (24236.02, 24236.15)
+    batch-generator ................................: (3.35, 3.42)
+    optimizer ......................................: (65.67, 65.77)
+ iteration       40/      50 | consumed samples:          640 | consumed tokens:       655360 | elapsed time per iteration (ms): 24303.2 | learning rate: 1.116E-05 | global batch size:    16 | lm loss: 9.219676E+00 | loss scale: 4096.0 | actual seqlen:  1024 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.658 | tokens per gpu per second (tgs): 337.075 | TFLOPs: 1.09 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (24236.34, 24236.45)
+    batch-generator ................................: (3.33, 3.40)
+    optimizer ......................................: (65.63, 65.79)
+ iteration       50/      50 | consumed samples:          800 | consumed tokens:       819200 | elapsed time per iteration (ms): 24300.4 | learning rate: 6.000E-06 | global batch size:    16 | lm loss: 9.115012E+00 | loss scale: 4096.0 | actual seqlen:  1024 | number of skipped iterations:   0 | number of nan iterations:   0 | samples per second: 0.658 | tokens per gpu per second (tgs): 337.113 | TFLOPs: 1.09 |
+(min, max) time across ranks (ms):
+    forward-backward ...............................: (24233.14, 24233.65)
+    batch-generator ................................: (3.34, 3.42)
+    optimizer ......................................: (65.77, 65.90)
+[rank1]:[W1122 02:46:11.005763561 ProcessGroupNCCL.cpp:1496] Warning: WARNING: destroy_process_group() was not called before program exit, which can leak resources. For more info, please see https://pytorch.org/docs/stable/distributed.html#shutdown (function operator())
+[2025-11-22 02:46:13,439] [INFO] [launch.py:367:main] Process 3697067 exits successfully.
++ echo ''
+
++ echo 'Training completed!'
+Training completed!
++ echo 'Logs saved to: /home/noah.weaver/output/LARGE_zero_stage3_nl24_hs1024/training_log_rank1.txt'
+Logs saved to: /home/noah.weaver/output/LARGE_zero_stage3_nl24_hs1024/training_log_rank1.txt

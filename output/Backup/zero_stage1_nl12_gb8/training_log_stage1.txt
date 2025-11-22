@@ -1,0 +1,764 @@
+Warning: The cache directory for DeepSpeed Triton autotune, /home/noah.weaver/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+[2025-11-22 00:27:39,984] [INFO] [runner.py:630:main] cmd = /home/noah.weaver/miniconda/envs/megatron/bin/python3.9 -u -m deepspeed.launcher.launch --world_info=eyJ3cy1sNi0wMTkiOiBbMF0sICJ3cy1sNi0wMTQiOiBbMF19 --master_addr=ws-l6-019 --master_port=12345 --node_rank=0 --enable_each_rank_log=None --log_level=info /home/noah.weaver/Megatron-DeepSpeed/pretrain_gpt.py --tensor-model-parallel-size 1 --pipeline-model-parallel-size 1 --num-layers 12 --hidden-size 512 --num-attention-heads 8 --seq-length 512 --loss-scale 12 --max-position-embeddings 512 --micro-batch-size 2 --global-batch-size 8 --train-iters 100 --lr 6.0e-5 --min-lr 6.0e-6 --lr-decay-style cosine --log-interval 10 --eval-iters 0 --eval-interval 10000 --data-path /home/noah.weaver/gpt/my-gpt2_text_document --vocab-file /home/noah.weaver/gpt/gpt2-vocab.json --merge-file /home/noah.weaver/gpt/gpt2-merges.txt --split 98,2,0 --clip-grad 1.0 --weight-decay 0.1 --adam-beta1 0.9 --adam-beta2 0.95 --init-method-std 0.006 --fp16 --deepspeed-activation-checkpointing --zero-stage=1 --deepspeed_config=/home/noah.weaver/ds_config_zero1.json --no-pipeline-parallel --deepspeed --checkpoint-activations --timing-log-level 2 --vocab-size 50000 --no-masked-softmax-fusion
+Warning: The cache directory for DeepSpeed Triton autotune, /home/noah.weaver/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+[2025-11-22 00:27:44,796] [INFO] [launch.py:155:main] 0 NCCL_DEBUG=WARN
+[2025-11-22 00:27:44,796] [INFO] [launch.py:162:main] WORLD INFO DICT: {'ws-l6-019': [0], 'ws-l6-014': [0]}
+[2025-11-22 00:27:44,796] [INFO] [launch.py:168:main] nnodes=2, num_local_procs=1, node_rank=0
+[2025-11-22 00:27:44,796] [INFO] [launch.py:179:main] global_rank_mapping=defaultdict(<class 'list'>, {'ws-l6-019': [0], 'ws-l6-014': [1]})
+[2025-11-22 00:27:44,796] [INFO] [launch.py:180:main] dist_world_size=2
+[2025-11-22 00:27:44,796] [INFO] [launch.py:184:main] Setting CUDA_VISIBLE_DEVICES=0
+[2025-11-22 00:27:44,809] [INFO] [launch.py:272:main] process 3978959 spawned with command: ['/home/noah.weaver/miniconda/envs/megatron/bin/python3.9', '-u', '/home/noah.weaver/Megatron-DeepSpeed/pretrain_gpt.py', '--local_rank=0', '--tensor-model-parallel-size', '1', '--pipeline-model-parallel-size', '1', '--num-layers', '12', '--hidden-size', '512', '--num-attention-heads', '8', '--seq-length', '512', '--loss-scale', '12', '--max-position-embeddings', '512', '--micro-batch-size', '2', '--global-batch-size', '8', '--train-iters', '100', '--lr', '6.0e-5', '--min-lr', '6.0e-6', '--lr-decay-style', 'cosine', '--log-interval', '10', '--eval-iters', '0', '--eval-interval', '10000', '--data-path', '/home/noah.weaver/gpt/my-gpt2_text_document', '--vocab-file', '/home/noah.weaver/gpt/gpt2-vocab.json', '--merge-file', '/home/noah.weaver/gpt/gpt2-merges.txt', '--split', '98,2,0', '--clip-grad', '1.0', '--weight-decay', '0.1', '--adam-beta1', '0.9', '--adam-beta2', '0.95', '--init-method-std', '0.006', '--fp16', '--deepspeed-activation-checkpointing', '--zero-stage=1', '--deepspeed_config=/home/noah.weaver/ds_config_zero1.json', '--no-pipeline-parallel', '--deepspeed', '--checkpoint-activations', '--timing-log-level', '2', '--vocab-size', '50000', '--no-masked-softmax-fusion']
+Warning: The cache directory for DeepSpeed Triton autotune, /home/noah.weaver/.triton/autotune, appears to be on an NFS system. While this is generally acceptable, if you experience slowdowns or hanging when DeepSpeed exits, it is recommended to set the TRITON_CACHE_DIR environment variable to a non-NFS path.
+--------------------------------------------------
+DeepSpeed C++/CUDA extension op report
+--------------------------------------------------
+NOTE: Ops not installed will be just-in-time (JIT) compiled at
+      runtime if needed. Op compatibility means that your system
+      meet the required dependencies to JIT install the op.
+--------------------------------------------------
+JIT compiled ops requires ninja
+ninja .................. [92m[OKAY][0m
+--------------------------------------------------
+op name ................ installed .. compatible
+--------------------------------------------------
+[93m [WARNING] [0m async_io requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m async_io: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+async_io ............... [93m[NO][0m ....... [93m[NO][0m
+fused_adam ............. [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adam ............... [93m[NO][0m ....... [92m[OKAY][0m
+cpu_adagrad ............ [93m[NO][0m ....... [92m[OKAY][0m
+cpu_lion ............... [93m[NO][0m ....... [92m[OKAY][0m
+dc ..................... [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m Please specify the CUTLASS repo directory as environment variable $CUTLASS_PATH
+evoformer_attn ......... [93m[NO][0m ....... [93m[NO][0m
+fp_quantizer ........... [93m[NO][0m ....... [92m[OKAY][0m
+fused_lamb ............. [93m[NO][0m ....... [92m[OKAY][0m
+fused_lion ............. [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m gds requires the dev libaio .so object and headers but these were not found.
+[93m [WARNING] [0m gds: please install the libaio-dev package with apt
+[93m [WARNING] [0m If libaio is already installed (perhaps from source), try setting the CFLAGS and LDFLAGS environment variables to where it can be found.
+gds .................... [93m[NO][0m ....... [93m[NO][0m
+transformer_inference .. [93m[NO][0m ....... [92m[OKAY][0m
+inference_core_ops ..... [93m[NO][0m ....... [92m[OKAY][0m
+cutlass_ops ............ [93m[NO][0m ....... [92m[OKAY][0m
+quantizer .............. [93m[NO][0m ....... [92m[OKAY][0m
+ragged_device_ops ...... [93m[NO][0m ....... [92m[OKAY][0m
+ragged_ops ............. [93m[NO][0m ....... [92m[OKAY][0m
+random_ltd ............. [93m[NO][0m ....... [92m[OKAY][0m
+[93m [WARNING] [0m sparse_attn requires a torch version >= 1.5 and < 2.0 but detected 2.6
+[93m [WARNING] [0m using untested triton version (3.2.0), only 1.0.0 is known to be compatible
+sparse_attn ............ [93m[NO][0m ....... [93m[NO][0m
+spatial_inference ...... [93m[NO][0m ....... [92m[OKAY][0m
+transformer ............ [93m[NO][0m ....... [92m[OKAY][0m
+stochastic_transformer . [93m[NO][0m ....... [92m[OKAY][0m
+utils .................. [93m[NO][0m ....... [92m[OKAY][0m
+--------------------------------------------------
+DeepSpeed general environment info:
+torch install path ............... ['/home/noah.weaver/miniconda/envs/megatron/lib/python3.9/site-packages/torch']
+torch version .................... 2.6.0+cu124
+deepspeed install path ........... ['/home/noah.weaver/miniconda/envs/megatron/lib/python3.9/site-packages/deepspeed']
+deepspeed info ................... 0.18.2, unknown, unknown
+torch cuda version ............... 12.4
+torch hip version ................ None
+nvcc version ..................... 12.4
+deepspeed wheel compiled w. ...... torch 2.6, cuda 12.4
+shared memory (/dev/shm) size .... 31.33 GB
+**** Git info for Megatron: git_hash=unknown git_branch=unknown ****
+using world size: 2, data-parallel-size: 2, sequence-parallel size: 1, tensor-model-parallel size: 1, pipeline-model-parallel size: 1 
+using torch.float16 for parameters ...
+------------------------ arguments ------------------------
+  accumulate_allreduce_grads_in_fp32 .............. False
+  adam_beta1 ...................................... 0.9
+  adam_beta2 ...................................... 0.95
+  adam_eps ........................................ 1e-08
+  add_bias_linear ................................. True
+  add_position_embedding .......................... True
+  adlr_autoresume ................................. False
+  adlr_autoresume_interval ........................ 1000
+  aml_data_download_path .......................... None
+  apply_layernorm_1p .............................. False
+  apply_query_key_layer_scaling ................... True
+  apply_residual_connection_post_layernorm ........ False
+  async_tensor_model_parallel_allreduce ........... False
+  attention_dropout ............................... 0.1
+  attention_softmax_in_fp32 ....................... False
+  barrier_with_L1_time ............................ True
+  bert_binary_head ................................ True
+  bert_embedder_type .............................. megatron
+  bert_load ....................................... None
+  bf16 ............................................ False
+  bias_dropout_fusion ............................. True
+  bias_gelu_fusion ................................ True
+  biencoder_projection_dim ........................ 0
+  biencoder_shared_query_context_model ............ False
+  block_data_path ................................. None
+  checkpoint_activations .......................... True
+  checkpoint_in_cpu ............................... False
+  checkpoint_num_layers ........................... 1
+  classes_fraction ................................ 1.0
+  clip_grad ....................................... 1.0
+  compression_training ............................ False
+  consumed_train_samples .......................... 0
+  consumed_train_tokens ........................... 0
+  consumed_valid_samples .......................... 0
+  contigious_checkpointing ........................ False
+  cpu_optimizer ................................... False
+  cpu_torch_adam .................................. False
+  create_moe_param_group .......................... False
+  curriculum_learning_legacy ...................... False
+  data_cache_path ................................. None
+  data_efficiency_curriculum_learning ............. False
+  data_impl ....................................... infer
+  data_parallel_random_init ....................... False
+  data_parallel_size .............................. 2
+  data_path ....................................... ['/home/noah.weaver/gpt/my-gpt2_text_document']
+  data_per_class_fraction ......................... 1.0
+  data_sharding ................................... True
+  dataloader_type ................................. single
+  DDP_impl ........................................ local
+  decoder_num_layers .............................. None
+  decoder_seq_length .............................. None
+  deepscale ....................................... False
+  deepscale_config ................................ None
+  deepspeed ....................................... True
+  deepspeed_activation_checkpointing .............. True
+  deepspeed_config ................................ /home/noah.weaver/ds_config_zero1.json
+  dino_bottleneck_size ............................ 256
+  dino_freeze_last_layer .......................... 1
+  dino_head_hidden_size ........................... 2048
+  dino_local_crops_number ......................... 10
+  dino_local_img_size ............................. 96
+  dino_norm_last_layer ............................ False
+  dino_teacher_temp ............................... 0.07
+  dino_warmup_teacher_temp ........................ 0.04
+  dino_warmup_teacher_temp_epochs ................. 30
+  distribute_checkpointed_activations ............. False
+  distribute_saved_activations .................... False
+  distributed_backend ............................. nccl
+  distributed_timeout_minutes ..................... 10
+  ds_fused_adam ................................... False
+  ds_inference .................................... False
+  ds_pipeline_enabled ............................. False
+  ds_sequence_parallel_fpdt ....................... False
+  ds_sequence_parallel_fpdt_chunk_size ............ 65536
+  ds_sequence_parallel_fpdt_offloading ............ False
+  ds_sequence_parallel_size ....................... 1
+  embedding_path .................................. None
+  embedding_weights_in_fp32 ....................... False
+  empty_unused_memory_level ....................... 0
+  enable_expert_tensor_parallelism ................ False
+  enable_zbh1_exact_semantics ..................... False
+  enable_zbh1_pipeline ............................ False
+  encoder_num_layers .............................. 12
+  encoder_seq_length .............................. 512
+  end_weight_decay ................................ 0.1
+  eod_mask_loss ................................... False
+  eval_interval ................................... 10000
+  eval_iters ...................................... 0
+  evidence_data_path .............................. None
+  exit_duration_in_mins ........................... None
+  exit_interval ................................... None
+  exit_on_missing_checkpoint ...................... False
+  exit_signal_handler ............................. False
+  expert_interval ................................. 2
+  ffn_hidden_size ................................. 2048
+  finetune ........................................ False
+  force_ds_sequence_parallel ...................... False
+  fp16 ............................................ True
+  fp16_lm_cross_entropy ........................... False
+  fp32_residual_connection ........................ False
+  fp8_amax_compute_algo ........................... most_recent
+  fp8_amax_history_len ............................ 1
+  fp8_e4m3 ........................................ False
+  fp8_hybrid ...................................... False
+  fp8_interval .................................... 1
+  fp8_margin ...................................... 0
+  fp8_wgrad ....................................... True
+  global_batch_size ............................... 8
+  gradient_accumulation_fusion .................... True
+  head_lr_mult .................................... 1.0
+  hidden_dropout .................................. 0.1
+  hidden_size ..................................... 512
+  hidden_size_teacher ............................. None
+  hysteresis ...................................... 2
+  ict_head_size ................................... None
+  ict_load ........................................ None
+  img_h ........................................... 224
+  img_w ........................................... 224
+  indexer_batch_size .............................. 128
+  indexer_log_interval ............................ 1000
+  inference ....................................... False
+  inference_batch_times_seqlen_threshold .......... 512
+  init_method_std ................................. 0.006
+  init_method_xavier_uniform ...................... False
+  initial_loss_scale .............................. 4294967296
+  iter_per_epoch .................................. 1250
+  kd .............................................. False
+  kd_alpha_ce ..................................... 1
+  kd_beta_ce ...................................... 1
+  kd_temp ......................................... 1.0
+  kill_switch_file ................................ None
+  kv_channels ..................................... 64
+  layernorm_epsilon ............................... 1e-05
+  lazy_mpu_init ................................... None
+  load ............................................ None
+  load_tag ........................................ None
+  load_teacher .................................... None
+  local_rank ...................................... 0
+  log_batch_size_to_tensorboard ................... False
+  log_interval .................................... 10
+  log_learning_rate_to_tensorboard ................ True
+  log_loss_scale_to_tensorboard ................... True
+  log_memory_to_tensorboard ....................... False
+  log_num_zeros_in_grad ........................... False
+  log_optimizer_states_to_tensorboard ............. False
+  log_params_norm ................................. False
+  log_timers_to_tensorboard ....................... False
+  log_validation_ppl_to_tensorboard ............... False
+  log_world_size_to_tensorboard ................... False
+  loss_scale ...................................... 12.0
+  loss_scale_window ............................... 1000
+  lr .............................................. 6e-05
+  lr_decay_iters .................................. None
+  lr_decay_samples ................................ None
+  lr_decay_style .................................. cosine
+  lr_decay_tokens ................................. None
+  lr_warmup_fraction .............................. None
+  lr_warmup_iters ................................. 0
+  lr_warmup_samples ............................... 0
+  lr_warmup_tokens ................................ None
+  make_vocab_size_divisible_by .................... 128
+  mask_factor ..................................... 1.0
+  mask_prob ....................................... 0.15
+  mask_type ....................................... random
+  masked_softmax_fusion ........................... False
+  max_position_embeddings ......................... 512
+  max_tokens_to_oom ............................... 12000
+  mem_efficient_ln ................................ True
+  memory_centric_tiled_linear ..................... False
+  merge_file ...................................... /home/noah.weaver/gpt/gpt2-merges.txt
+  micro_batch_size ................................ 2
+  min_loss_scale .................................. 1.0
+  min_lr .......................................... 6e-06
+  mlp_type ........................................ standard
+  mmap_warmup ..................................... False
+  moe_eval_capacity_factor ........................ 1.0
+  moe_expert_parallel_size ........................ 1
+  moe_loss_coeff .................................. 0.1
+  moe_min_capacity ................................ 4
+  moe_token_dropping .............................. True
+  moe_top2_2nd_expert_sampling .................... True
+  moe_train_capacity_factor ....................... 1.0
+  mos ............................................. False
+  no_load_lr_state ................................ False
+  no_load_optim ................................... None
+  no_load_rng ..................................... None
+  no_persist_layer_norm ........................... False
+  no_pipeline_parallel ............................ True
+  no_save_optim ................................... None
+  no_save_rng ..................................... None
+  normalization ................................... layernorm
+  num_attention_heads ............................. 8
+  num_attention_heads_teacher ..................... None
+  num_channels .................................... 3
+  num_classes ..................................... 1000
+  num_experts ..................................... [1]
+  num_experts_switch .............................. None
+  num_experts_teacher ............................. [1]
+  num_key_value_heads ............................. 8
+  num_layers ...................................... 12
+  num_layers_per_virtual_pipeline_stage ........... None
+  num_layers_teacher .............................. None
+  num_workers ..................................... 2
+  onnx_safe ....................................... None
+  openai_gelu ..................................... False
+  optimizer ....................................... adam
+  output_bert_embeddings .......................... False
+  overlap_p2p_comm ................................ False
+  override_opt_param_scheduler .................... False
+  params_dtype .................................... torch.float16
+  partition_activations ........................... False
+  patch_dim ....................................... 16
+  perform_initialization .......................... True
+  pipeline_model_parallel_size .................... 1
+  pipeline_model_parallel_split_rank .............. None
+  profile ......................................... None
+  profile_backward ................................ False
+  profile_ranks ................................... None
+  profile_steps ................................... 2,3
+  query_in_block_prob ............................. 0.1
+  rampup_batch_size ............................... None
+  random_ltd ...................................... False
+  rank ............................................ 0
+  recompute_granularity ........................... None
+  recompute_method ................................ None
+  recompute_num_layers ............................ 1
+  remote_device ................................... none
+  repeated_dataloader ............................. False
+  reset_attention_mask ............................ False
+  reset_iteration ................................. False
+  reset_position_ids .............................. False
+  retriever_report_topk_accuracies ................ []
+  retriever_score_scaling ......................... False
+  retriever_seq_length ............................ 256
+  retro_add_retriever ............................. False
+  retro_cyclic_train_iters ........................ None
+  retro_encoder_attention_dropout ................. 0.1
+  retro_encoder_hidden_dropout .................... 0.1
+  retro_encoder_layers ............................ 2
+  retro_num_neighbors ............................. 2
+  retro_num_retrieved_chunks ...................... 2
+  retro_return_doc_ids ............................ False
+  retro_workdir ................................... None
+  return_data_index ............................... False
+  rope_theta ...................................... 10000
+  rotary_percent .................................. 1.0
+  sample_rate ..................................... 1.0
+  save ............................................ None
+  save_interval ................................... None
+  scatter_gather_tensors_in_pipeline .............. True
+  scattered_embeddings ............................ False
+  seed ............................................ 1234
+  seq_length ...................................... 512
+  sequence_parallel ............................... False
+  sgd_momentum .................................... 0.9
+  short_seq_prob .................................. 0.1
+  skip_train ...................................... False
+  split ........................................... 98,2,0
+  split_transformers .............................. False
+  squared_relu .................................... False
+  standalone_embedding_stage ...................... False
+  start_weight_decay .............................. 0.1
+  swiglu .......................................... False
+  swin_backbone_type .............................. tiny
+  synchronize_each_layer .......................... False
+  tensor_model_parallel_size ...................... 1
+  tensorboard_dir ................................. None
+  tensorboard_log_interval ........................ 1
+  tensorboard_queue_size .......................... 1000
+  test_data_path .................................. None
+  tile_factor ..................................... 1
+  timing_log_level ................................ 2
+  timing_log_option ............................... minmax
+  titles_data_path ................................ None
+  tokenizer_model ................................. None
+  tokenizer_type .................................. GPT2BPETokenizer
+  topk ............................................ 1
+  train_data_exact_num_epochs ..................... None
+  train_data_path ................................. None
+  train_desc_path ................................. None
+  train_doc_idx_path .............................. None
+  train_idx_path .................................. None
+  train_iters ..................................... 100
+  train_sample_idx_path ........................... None
+  train_samples ................................... None
+  train_shuffle_idx_path .......................... None
+  train_tokens .................................... None
+  transformer_impl ................................ local
+  transformer_pipeline_model_parallel_size ........ 1
+  trust_remote_code ............................... False
+  universal_checkpoint ............................ False
+  untie_embeddings_and_output_weights ............. False
+  use_checkpoint_args ............................. False
+  use_checkpoint_opt_param_scheduler .............. False
+  use_contiguous_buffers_in_local_ddp ............. True
+  use_cpu_initialization .......................... None
+  use_dataset_only ................................ False
+  use_distributed_optimizer ....................... False
+  use_flash_attn .................................. False
+  use_flash_attn_builder .......................... False
+  use_flash_attn_triton ........................... False
+  use_flash_attn_v1 ............................... False
+  use_flash_attn_v2 ............................... False
+  use_one_sent_docs ............................... False
+  use_pin_memory .................................. False
+  use_ring_exchange_p2p ........................... False
+  use_rotary_position_embeddings .................. False
+  use_tutel ....................................... False
+  valid_data_path ................................. None
+  variable_seq_lengths ............................ False
+  virtual_pipeline_model_parallel_size ............ None
+  vision_backbone_type ............................ vit
+  vision_pretraining .............................. False
+  vision_pretraining_type ......................... classify
+  vocab_extra_ids ................................. 0
+  vocab_file ...................................... /home/noah.weaver/gpt/gpt2-vocab.json
+  vocab_size ...................................... 50000
+  wandb_exp_name .................................. 
+  wandb_project ................................... 
+  wandb_save_dir .................................. 
+  weight_decay .................................... 0.1
+  weight_decay_incr_style ......................... constant
+  world_size ...................................... 2
+  zero_allgather_bucket_size ...................... 0.0
+  zero_contigious_gradients ....................... False
+  zero_reduce_bucket_size ......................... 0.0
+  zero_reduce_scatter ............................. False
+  zero_stage ...................................... 1
+-------------------- end of arguments ---------------------
+setting number of micro-batches to constant 2
+> building GPT2BPETokenizer tokenizer ...
+ > padded vocab (size: 50257) with 47 dummy tokens (new size: 50304)
+> initializing torch distributed ...
+> initialized tensor model parallel with size 1
+> initialized pipeline model parallel with size 1
+> setting random seeds to 1234 ...
+> compiling dataset index builder ...
+make: Entering directory '/home/noah.weaver/Megatron-DeepSpeed/megatron/data'
+make: Nothing to be done for 'default'.
+make: Leaving directory '/home/noah.weaver/Megatron-DeepSpeed/megatron/data'
+>>> done with dataset index builder. Compilation time: 0.064 seconds
+WARNING: constraints for invoking optimized fused softmax kernel are not met. We default back to unfused kernel invocations.
+> compiling and loading fused kernels ...
+NCCL version 2.21.5+cuda12.4
+>>> done with compiling and loading fused kernels. Compilation time: 0.426 seconds
+time to initialize megatron (seconds): 2.788
+[after megatron is initialized] datetime: 2025-11-22 00:27:52 
+building GPT model ...
+ > number of parameters on (tensor, pipeline) model parallel rank (0, 0): 63847424
+> learning rate decay style: cosine
+DeepSpeed is enabled.
+[after model, optimizer, and learning rate scheduler are built] datetime: 2025-11-22 00:27:54 
+> building train, validation, and test datasets ...
+ > datasets target sizes (minimum size):
+    train:      800
+    validation: 0
+    test:       0
+> building train, validation, and test datasets for GPT ...
+Single data path provided for train, valid & test
+ > building dataset index ...
+    reading sizes...
+    reading pointers...
+    reading document index...
+    creating numpy buffer of mmap...
+    creating memory view of numpy buffer...
+ > finished creating indexed dataset in 0.066661 seconds
+    number of documents: 99598
+ > dataset split:
+    train:
+     document indices in [0, 97606) total of 97606 documents
+    validation:
+     document indices in [97606, 99598) total of 1992 documents
+    test:
+     document indices in [99598, 99598) total of 0 documents
+ > loading doc-idx mapping from /home/noah.weaver/gpt/index-cache/87d06c2318032c03b3aaf09d03cbfd1a_doc_idx.npy
+ > loading sample-idx mapping from /home/noah.weaver/gpt/index-cache/87d06c2318032c03b3aaf09d03cbfd1a_sample_idx.npy
+ > loading shuffle-idx mapping from /home/noah.weaver/gpt/index-cache/87d06c2318032c03b3aaf09d03cbfd1a_shuffle_idx.npy
+    loaded indexed file in 0.002 seconds
+    total number of samples: 427203
+    total number of epochs: 1
+ > loading doc-idx mapping from /home/noah.weaver/gpt/index-cache/97fac6c30f4f5ddba61f9812fd44b0b5_doc_idx.npy
+ > loading sample-idx mapping from /home/noah.weaver/gpt/index-cache/97fac6c30f4f5ddba61f9812fd44b0b5_sample_idx.npy
+ > loading shuffle-idx mapping from /home/noah.weaver/gpt/index-cache/97fac6c30f4f5ddba61f9812fd44b0b5_shuffle_idx.npy
+    loaded indexed file in 0.001 seconds
+    total number of samples: 8260
+    total number of epochs: 1
+> finished creating GPT datasets ...
+[after dataloaders are built] datetime: 2025-11-22 00:27:54 
+done with setup ...
+training ...
+[before the start of training step] datetime: 2025-11-22 00:27:55 
+[Rank 0] time (ms) | optimizer_allgather: 548.68 | optimizer_gradients: 0.67 | optimizer_step: 1.60
+[Rank 0] time (ms) | fwd_microstep: 221.95 | bwd_microstep: 1196.99 | bwd_inner_microstep: 79.16 | bwd_allreduce_microstep: 1112.95 | step_microstep: 1622.70
+[Rank 0] time (ms) | fwd: 221.92 | bwd: 1197.00 | bwd_inner: 79.15 | bwd_allreduce: 1112.95 | step: 1622.70
+[Rank 0] time (ms) | optimizer_allgather: 554.10 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.13 | bwd_microstep: 1164.86 | bwd_inner_microstep: 61.01 | bwd_allreduce_microstep: 1103.79 | step_microstep: 565.78
+[Rank 0] time (ms) | fwd: 33.11 | bwd: 1164.87 | bwd_inner: 61.01 | bwd_allreduce: 1103.81 | step: 565.78
+[Rank 0] time (ms) | optimizer_allgather: 548.99 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.21 | bwd_microstep: 1160.98 | bwd_inner_microstep: 60.72 | bwd_allreduce_microstep: 1100.22 | step_microstep: 560.67
+[Rank 0] time (ms) | fwd: 33.19 | bwd: 1160.99 | bwd_inner: 60.72 | bwd_allreduce: 1100.22 | step: 560.67
+[Rank 0] time (ms) | optimizer_allgather: 548.98 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.13 | bwd_microstep: 1163.72 | bwd_inner_microstep: 60.84 | bwd_allreduce_microstep: 1102.82 | step_microstep: 560.48
+[Rank 0] time (ms) | fwd: 33.11 | bwd: 1163.73 | bwd_inner: 60.84 | bwd_allreduce: 1102.84 | step: 560.48
+[Rank 0] time (ms) | optimizer_allgather: 550.97 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.27 | bwd_microstep: 1160.84 | bwd_inner_microstep: 60.73 | bwd_allreduce_microstep: 1100.07 | step_microstep: 562.54
+[Rank 0] time (ms) | fwd: 33.24 | bwd: 1160.86 | bwd_inner: 60.73 | bwd_allreduce: 1100.08 | step: 562.54
+[Rank 0] time (ms) | optimizer_allgather: 549.51 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.48 | bwd_microstep: 1161.22 | bwd_inner_microstep: 60.87 | bwd_allreduce_microstep: 1100.30 | step_microstep: 561.50
+[Rank 0] time (ms) | fwd: 33.46 | bwd: 1161.23 | bwd_inner: 60.87 | bwd_allreduce: 1100.31 | step: 561.50
+[Rank 0] time (ms) | optimizer_allgather: 548.40 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.19 | bwd_microstep: 1160.69 | bwd_inner_microstep: 60.76 | bwd_allreduce_microstep: 1099.88 | step_microstep: 559.98
+[Rank 0] time (ms) | fwd: 33.17 | bwd: 1160.70 | bwd_inner: 60.76 | bwd_allreduce: 1099.89 | step: 559.98
+[Rank 0] time (ms) | optimizer_allgather: 548.77 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.12 | bwd_microstep: 1165.30 | bwd_inner_microstep: 60.80 | bwd_allreduce_microstep: 1104.46 | step_microstep: 560.48
+[Rank 0] time (ms) | fwd: 33.09 | bwd: 1165.31 | bwd_inner: 60.80 | bwd_allreduce: 1104.46 | step: 560.49
+[Rank 0] time (ms) | optimizer_allgather: 548.44 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.32 | bwd_microstep: 1161.13 | bwd_inner_microstep: 61.03 | bwd_allreduce_microstep: 1100.05 | step_microstep: 559.98
+[Rank 0] time (ms) | fwd: 33.30 | bwd: 1161.15 | bwd_inner: 61.03 | bwd_allreduce: 1100.06 | step: 559.98
+[Rank 0] time (ms) | optimizer_allgather: 548.55 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.19 | bwd_microstep: 1161.41 | bwd_inner_microstep: 60.76 | bwd_allreduce_microstep: 1100.60 | step_microstep: 560.54
+[Rank 0] time (ms) | fwd: 33.17 | bwd: 1161.42 | bwd_inner: 60.76 | bwd_allreduce: 1100.60 | step: 560.54
+[Rank 0] (after 10 iterations) memory (MB) | allocated: 512.1201171875 | max allocated: 2105.85302734375 | reserved: 2342.0 | max reserved: 2342.0
+[Rank 0] time (ms) | optimizer_allgather: 548.72 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.38 | bwd_microstep: 1166.02 | bwd_inner_microstep: 60.71 | bwd_allreduce_microstep: 1105.25 | step_microstep: 560.38
+[Rank 0] time (ms) | fwd: 33.35 | bwd: 1166.03 | bwd_inner: 60.71 | bwd_allreduce: 1105.26 | step: 560.38
+[Rank 0] time (ms) | optimizer_allgather: 552.84 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.09 | bwd_microstep: 1161.05 | bwd_inner_microstep: 60.72 | bwd_allreduce_microstep: 1100.28 | step_microstep: 564.47
+[Rank 0] time (ms) | fwd: 33.07 | bwd: 1161.07 | bwd_inner: 60.72 | bwd_allreduce: 1100.29 | step: 564.47
+[Rank 0] time (ms) | optimizer_allgather: 548.35 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.11 | bwd_microstep: 1160.72 | bwd_inner_microstep: 60.73 | bwd_allreduce_microstep: 1099.94 | step_microstep: 559.94
+[Rank 0] time (ms) | fwd: 33.08 | bwd: 1160.74 | bwd_inner: 60.74 | bwd_allreduce: 1099.95 | step: 559.94
+[Rank 0] time (ms) | optimizer_allgather: 548.75 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.03 | bwd_microstep: 1167.43 | bwd_inner_microstep: 60.84 | bwd_allreduce_microstep: 1106.54 | step_microstep: 560.49
+[Rank 0] time (ms) | fwd: 33.01 | bwd: 1167.44 | bwd_inner: 60.84 | bwd_allreduce: 1106.55 | step: 560.49
+[Rank 0] time (ms) | optimizer_allgather: 548.74 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.25 | bwd_microstep: 1162.13 | bwd_inner_microstep: 60.74 | bwd_allreduce_microstep: 1101.34 | step_microstep: 560.43
+[Rank 0] time (ms) | fwd: 33.23 | bwd: 1162.14 | bwd_inner: 60.74 | bwd_allreduce: 1101.35 | step: 560.43
+[Rank 0] time (ms) | optimizer_allgather: 548.37 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.07 | bwd_microstep: 1160.33 | bwd_inner_microstep: 60.69 | bwd_allreduce_microstep: 1099.61 | step_microstep: 559.94
+[Rank 0] time (ms) | fwd: 33.05 | bwd: 1160.34 | bwd_inner: 60.69 | bwd_allreduce: 1099.61 | step: 559.94
+[Rank 0] time (ms) | optimizer_allgather: 548.64 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.10 | bwd_microstep: 1163.97 | bwd_inner_microstep: 60.72 | bwd_allreduce_microstep: 1103.21 | step_microstep: 560.26
+[Rank 0] time (ms) | fwd: 33.08 | bwd: 1163.99 | bwd_inner: 60.72 | bwd_allreduce: 1103.21 | step: 560.26
+[Rank 0] time (ms) | optimizer_allgather: 548.31 | optimizer_gradients: 0.66 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.30 | bwd_microstep: 1162.13 | bwd_inner_microstep: 60.79 | bwd_allreduce_microstep: 1101.29 | step_microstep: 560.08
+[Rank 0] time (ms) | fwd: 33.28 | bwd: 1162.14 | bwd_inner: 60.79 | bwd_allreduce: 1101.30 | step: 560.08
+[Rank 0] time (ms) | optimizer_allgather: 548.49 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.18 | bwd_microstep: 1160.71 | bwd_inner_microstep: 60.78 | bwd_allreduce_microstep: 1099.88 | step_microstep: 560.04
+[Rank 0] time (ms) | fwd: 33.16 | bwd: 1160.72 | bwd_inner: 60.78 | bwd_allreduce: 1099.89 | step: 560.04
+[Rank 0] time (ms) | optimizer_allgather: 548.38 | optimizer_gradients: 0.66 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.01 | bwd_microstep: 1165.18 | bwd_inner_microstep: 60.83 | bwd_allreduce_microstep: 1104.30 | step_microstep: 560.37
+[Rank 0] time (ms) | fwd: 32.99 | bwd: 1165.19 | bwd_inner: 60.84 | bwd_allreduce: 1104.31 | step: 560.37
+[Rank 0] time (ms) | optimizer_allgather: 548.53 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 32.92 | bwd_microstep: 1160.57 | bwd_inner_microstep: 60.72 | bwd_allreduce_microstep: 1099.79 | step_microstep: 560.11
+[Rank 0] time (ms) | fwd: 32.90 | bwd: 1160.58 | bwd_inner: 60.72 | bwd_allreduce: 1099.80 | step: 560.11
+[Rank 0] time (ms) | optimizer_allgather: 549.24 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.12 | bwd_microstep: 1164.93 | bwd_inner_microstep: 60.81 | bwd_allreduce_microstep: 1104.07 | step_microstep: 560.76
+[Rank 0] time (ms) | fwd: 33.10 | bwd: 1164.94 | bwd_inner: 60.81 | bwd_allreduce: 1104.07 | step: 560.76
+[Rank 0] time (ms) | optimizer_allgather: 549.46 | optimizer_gradients: 0.66 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.20 | bwd_microstep: 1160.94 | bwd_inner_microstep: 60.74 | bwd_allreduce_microstep: 1100.15 | step_microstep: 560.99
+[Rank 0] time (ms) | fwd: 33.18 | bwd: 1160.95 | bwd_inner: 60.74 | bwd_allreduce: 1100.16 | step: 560.99
+[Rank 0] time (ms) | optimizer_allgather: 552.01 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 32.93 | bwd_microstep: 1161.28 | bwd_inner_microstep: 60.70 | bwd_allreduce_microstep: 1100.53 | step_microstep: 563.68
+[Rank 0] time (ms) | fwd: 32.91 | bwd: 1161.29 | bwd_inner: 60.70 | bwd_allreduce: 1100.54 | step: 563.69
+[Rank 0] time (ms) | optimizer_allgather: 549.94 | optimizer_gradients: 0.65 | optimizer_step: 1.31
+[Rank 0] time (ms) | fwd_microstep: 33.12 | bwd_microstep: 1160.67 | bwd_inner_microstep: 60.81 | bwd_allreduce_microstep: 1099.82 | step_microstep: 561.66
+[Rank 0] time (ms) | fwd: 33.10 | bwd: 1160.68 | bwd_inner: 60.81 | bwd_allreduce: 1099.83 | step: 561.66
+[Rank 0] time (ms) | optimizer_allgather: 548.32 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.32 | bwd_microstep: 1162.09 | bwd_inner_microstep: 61.11 | bwd_allreduce_microstep: 1100.93 | step_microstep: 559.87
+[Rank 0] time (ms) | fwd: 33.30 | bwd: 1162.10 | bwd_inner: 61.11 | bwd_allreduce: 1100.94 | step: 559.88
+[Rank 0] time (ms) | optimizer_allgather: 548.23 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.13 | bwd_microstep: 1163.03 | bwd_inner_microstep: 60.72 | bwd_allreduce_microstep: 1102.27 | step_microstep: 559.88
+[Rank 0] time (ms) | fwd: 33.11 | bwd: 1163.04 | bwd_inner: 60.72 | bwd_allreduce: 1102.28 | step: 559.88
+[Rank 0] time (ms) | optimizer_allgather: 548.69 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.00 | bwd_microstep: 1163.90 | bwd_inner_microstep: 60.71 | bwd_allreduce_microstep: 1103.14 | step_microstep: 560.24
+[Rank 0] time (ms) | fwd: 32.98 | bwd: 1163.91 | bwd_inner: 60.71 | bwd_allreduce: 1103.15 | step: 560.24
+[Rank 0] time (ms) | optimizer_allgather: 548.56 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.04 | bwd_microstep: 1163.48 | bwd_inner_microstep: 60.83 | bwd_allreduce_microstep: 1102.61 | step_microstep: 560.12
+[Rank 0] time (ms) | fwd: 33.02 | bwd: 1163.50 | bwd_inner: 60.83 | bwd_allreduce: 1102.62 | step: 560.12
+[Rank 0] time (ms) | optimizer_allgather: 548.56 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 32.92 | bwd_microstep: 1160.74 | bwd_inner_microstep: 60.82 | bwd_allreduce_microstep: 1099.89 | step_microstep: 560.36
+[Rank 0] time (ms) | fwd: 32.90 | bwd: 1160.74 | bwd_inner: 60.82 | bwd_allreduce: 1099.89 | step: 560.36
+[Rank 0] time (ms) | optimizer_allgather: 548.76 | optimizer_gradients: 0.66 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.15 | bwd_microstep: 1170.80 | bwd_inner_microstep: 60.97 | bwd_allreduce_microstep: 1109.77 | step_microstep: 560.46
+[Rank 0] time (ms) | fwd: 33.13 | bwd: 1170.81 | bwd_inner: 60.97 | bwd_allreduce: 1109.79 | step: 560.47
+[Rank 0] time (ms) | optimizer_allgather: 548.17 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.15 | bwd_microstep: 1160.97 | bwd_inner_microstep: 60.83 | bwd_allreduce_microstep: 1100.10 | step_microstep: 559.71
+[Rank 0] time (ms) | fwd: 33.13 | bwd: 1160.98 | bwd_inner: 60.82 | bwd_allreduce: 1100.10 | step: 559.71
+[Rank 0] time (ms) | optimizer_allgather: 552.66 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.10 | bwd_microstep: 1161.21 | bwd_inner_microstep: 60.82 | bwd_allreduce_microstep: 1100.33 | step_microstep: 564.32
+[Rank 0] time (ms) | fwd: 33.08 | bwd: 1161.23 | bwd_inner: 60.83 | bwd_allreduce: 1100.35 | step: 564.32
+[Rank 0] time (ms) | optimizer_allgather: 548.29 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.02 | bwd_microstep: 1161.62 | bwd_inner_microstep: 60.85 | bwd_allreduce_microstep: 1100.71 | step_microstep: 559.80
+[Rank 0] time (ms) | fwd: 33.00 | bwd: 1161.63 | bwd_inner: 60.85 | bwd_allreduce: 1100.73 | step: 559.81
+[Rank 0] time (ms) | optimizer_allgather: 548.40 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.06 | bwd_microstep: 1161.55 | bwd_inner_microstep: 60.77 | bwd_allreduce_microstep: 1100.75 | step_microstep: 559.96
+[Rank 0] time (ms) | fwd: 33.04 | bwd: 1161.57 | bwd_inner: 60.77 | bwd_allreduce: 1100.75 | step: 559.96
+[Rank 0] time (ms) | optimizer_allgather: 548.24 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.06 | bwd_microstep: 1164.11 | bwd_inner_microstep: 60.95 | bwd_allreduce_microstep: 1103.11 | step_microstep: 559.83
+[Rank 0] time (ms) | fwd: 33.04 | bwd: 1164.12 | bwd_inner: 60.95 | bwd_allreduce: 1103.12 | step: 559.83
+[Rank 0] time (ms) | optimizer_allgather: 548.64 | optimizer_gradients: 0.66 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.14 | bwd_microstep: 1162.22 | bwd_inner_microstep: 61.13 | bwd_allreduce_microstep: 1101.07 | step_microstep: 560.17
+[Rank 0] time (ms) | fwd: 33.13 | bwd: 1162.24 | bwd_inner: 61.13 | bwd_allreduce: 1101.07 | step: 560.16
+[Rank 0] time (ms) | optimizer_allgather: 548.36 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 32.98 | bwd_microstep: 1163.78 | bwd_inner_microstep: 60.82 | bwd_allreduce_microstep: 1102.91 | step_microstep: 559.88
+[Rank 0] time (ms) | fwd: 32.96 | bwd: 1163.80 | bwd_inner: 60.82 | bwd_allreduce: 1102.92 | step: 559.88
+[Rank 0] time (ms) | optimizer_allgather: 548.46 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.04 | bwd_microstep: 1160.62 | bwd_inner_microstep: 60.83 | bwd_allreduce_microstep: 1099.76 | step_microstep: 559.97
+[Rank 0] time (ms) | fwd: 33.02 | bwd: 1160.63 | bwd_inner: 60.83 | bwd_allreduce: 1099.76 | step: 559.97
+[Rank 0] time (ms) | optimizer_allgather: 550.06 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.08 | bwd_microstep: 1163.74 | bwd_inner_microstep: 60.73 | bwd_allreduce_microstep: 1102.96 | step_microstep: 562.04
+[Rank 0] time (ms) | fwd: 33.06 | bwd: 1163.75 | bwd_inner: 60.73 | bwd_allreduce: 1102.97 | step: 562.03
+[Rank 0] time (ms) | optimizer_allgather: 548.43 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.09 | bwd_microstep: 1160.95 | bwd_inner_microstep: 60.87 | bwd_allreduce_microstep: 1100.03 | step_microstep: 560.05
+[Rank 0] time (ms) | fwd: 33.07 | bwd: 1160.96 | bwd_inner: 60.87 | bwd_allreduce: 1100.04 | step: 560.05
+[Rank 0] time (ms) | optimizer_allgather: 552.18 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 32.85 | bwd_microstep: 1161.34 | bwd_inner_microstep: 60.88 | bwd_allreduce_microstep: 1100.41 | step_microstep: 563.91
+[Rank 0] time (ms) | fwd: 32.83 | bwd: 1161.35 | bwd_inner: 60.88 | bwd_allreduce: 1100.42 | step: 563.91
+[Rank 0] time (ms) | optimizer_allgather: 548.51 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.10 | bwd_microstep: 1161.03 | bwd_inner_microstep: 60.81 | bwd_allreduce_microstep: 1100.18 | step_microstep: 560.07
+[Rank 0] time (ms) | fwd: 33.08 | bwd: 1161.04 | bwd_inner: 60.81 | bwd_allreduce: 1100.19 | step: 560.07
+[Rank 0] time (ms) | optimizer_allgather: 548.81 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 32.93 | bwd_microstep: 1161.23 | bwd_inner_microstep: 60.84 | bwd_allreduce_microstep: 1100.34 | step_microstep: 560.50
+[Rank 0] time (ms) | fwd: 32.91 | bwd: 1161.25 | bwd_inner: 60.84 | bwd_allreduce: 1100.36 | step: 560.50
+[Rank 0] time (ms) | optimizer_allgather: 549.33 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 32.99 | bwd_microstep: 1165.01 | bwd_inner_microstep: 60.82 | bwd_allreduce_microstep: 1104.14 | step_microstep: 560.86
+[Rank 0] time (ms) | fwd: 32.97 | bwd: 1165.03 | bwd_inner: 60.82 | bwd_allreduce: 1104.16 | step: 560.86
+[Rank 0] time (ms) | optimizer_allgather: 548.74 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.55 | bwd_microstep: 1160.79 | bwd_inner_microstep: 60.86 | bwd_allreduce_microstep: 1099.91 | step_microstep: 560.28
+[Rank 0] time (ms) | fwd: 33.53 | bwd: 1160.80 | bwd_inner: 60.86 | bwd_allreduce: 1099.91 | step: 560.29
+[Rank 0] time (ms) | optimizer_allgather: 548.63 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 32.99 | bwd_microstep: 1164.55 | bwd_inner_microstep: 60.87 | bwd_allreduce_microstep: 1103.63 | step_microstep: 560.43
+[Rank 0] time (ms) | fwd: 32.97 | bwd: 1164.56 | bwd_inner: 60.87 | bwd_allreduce: 1103.64 | step: 560.43
+[Rank 0] time (ms) | optimizer_allgather: 553.80 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 32.92 | bwd_microstep: 1160.51 | bwd_inner_microstep: 60.75 | bwd_allreduce_microstep: 1099.71 | step_microstep: 565.53
+[Rank 0] time (ms) | fwd: 32.89 | bwd: 1160.52 | bwd_inner: 60.75 | bwd_allreduce: 1099.72 | step: 565.53
+[Rank 0] time (ms) | optimizer_allgather: 550.95 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.02 | bwd_microstep: 1160.91 | bwd_inner_microstep: 60.76 | bwd_allreduce_microstep: 1100.10 | step_microstep: 562.59
+[Rank 0] time (ms) | fwd: 33.00 | bwd: 1160.93 | bwd_inner: 60.76 | bwd_allreduce: 1100.11 | step: 562.59
+[Rank 0] time (ms) | optimizer_allgather: 548.70 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.15 | bwd_microstep: 1160.81 | bwd_inner_microstep: 60.79 | bwd_allreduce_microstep: 1099.98 | step_microstep: 560.53
+[Rank 0] time (ms) | fwd: 33.13 | bwd: 1160.83 | bwd_inner: 60.79 | bwd_allreduce: 1099.99 | step: 560.53
+[Rank 0] time (ms) | optimizer_allgather: 548.43 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.12 | bwd_microstep: 1164.41 | bwd_inner_microstep: 60.94 | bwd_allreduce_microstep: 1103.44 | step_microstep: 560.22
+[Rank 0] time (ms) | fwd: 33.10 | bwd: 1164.42 | bwd_inner: 60.94 | bwd_allreduce: 1103.44 | step: 560.22
+[Rank 0] time (ms) | optimizer_allgather: 548.31 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 32.95 | bwd_microstep: 1162.29 | bwd_inner_microstep: 60.90 | bwd_allreduce_microstep: 1101.35 | step_microstep: 560.08
+[Rank 0] time (ms) | fwd: 32.92 | bwd: 1162.31 | bwd_inner: 60.89 | bwd_allreduce: 1101.36 | step: 560.08
+[Rank 0] time (ms) | optimizer_allgather: 549.13 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.21 | bwd_microstep: 1161.00 | bwd_inner_microstep: 60.86 | bwd_allreduce_microstep: 1100.09 | step_microstep: 560.82
+[Rank 0] time (ms) | fwd: 33.19 | bwd: 1161.01 | bwd_inner: 60.86 | bwd_allreduce: 1100.10 | step: 560.81
+[Rank 0] time (ms) | optimizer_allgather: 548.36 | optimizer_gradients: 0.66 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.02 | bwd_microstep: 1165.15 | bwd_inner_microstep: 60.86 | bwd_allreduce_microstep: 1104.26 | step_microstep: 560.17
+[Rank 0] time (ms) | fwd: 33.00 | bwd: 1165.17 | bwd_inner: 60.87 | bwd_allreduce: 1104.26 | step: 560.17
+[Rank 0] time (ms) | optimizer_allgather: 548.47 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.22 | bwd_microstep: 1160.72 | bwd_inner_microstep: 60.85 | bwd_allreduce_microstep: 1099.81 | step_microstep: 560.09
+[Rank 0] time (ms) | fwd: 33.20 | bwd: 1160.73 | bwd_inner: 60.85 | bwd_allreduce: 1099.83 | step: 560.09
+[Rank 0] time (ms) | optimizer_allgather: 552.56 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.01 | bwd_microstep: 1160.97 | bwd_inner_microstep: 60.81 | bwd_allreduce_microstep: 1100.11 | step_microstep: 564.20
+[Rank 0] time (ms) | fwd: 32.99 | bwd: 1160.99 | bwd_inner: 60.81 | bwd_allreduce: 1100.12 | step: 564.20
+[Rank 0] time (ms) | optimizer_allgather: 548.37 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.13 | bwd_microstep: 1162.43 | bwd_inner_microstep: 60.89 | bwd_allreduce_microstep: 1101.49 | step_microstep: 560.13
+[Rank 0] time (ms) | fwd: 33.11 | bwd: 1162.45 | bwd_inner: 60.89 | bwd_allreduce: 1101.50 | step: 560.12
+[Rank 0] time (ms) | optimizer_allgather: 551.60 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.19 | bwd_microstep: 1162.13 | bwd_inner_microstep: 60.94 | bwd_allreduce_microstep: 1101.13 | step_microstep: 563.32
+[Rank 0] time (ms) | fwd: 33.17 | bwd: 1162.14 | bwd_inner: 60.95 | bwd_allreduce: 1101.14 | step: 563.32
+[Rank 0] time (ms) | optimizer_allgather: 548.31 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.25 | bwd_microstep: 1161.78 | bwd_inner_microstep: 61.30 | bwd_allreduce_microstep: 1100.43 | step_microstep: 559.88
+[Rank 0] time (ms) | fwd: 33.22 | bwd: 1161.79 | bwd_inner: 61.30 | bwd_allreduce: 1100.44 | step: 559.88
+[Rank 0] time (ms) | optimizer_allgather: 548.88 | optimizer_gradients: 0.66 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.31 | bwd_microstep: 1163.24 | bwd_inner_microstep: 60.87 | bwd_allreduce_microstep: 1102.32 | step_microstep: 560.85
+[Rank 0] time (ms) | fwd: 33.29 | bwd: 1163.25 | bwd_inner: 60.87 | bwd_allreduce: 1102.33 | step: 560.85
+[Rank 0] time (ms) | optimizer_allgather: 548.36 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.35 | bwd_microstep: 1168.38 | bwd_inner_microstep: 60.91 | bwd_allreduce_microstep: 1107.42 | step_microstep: 559.98
+[Rank 0] time (ms) | fwd: 33.32 | bwd: 1168.40 | bwd_inner: 60.91 | bwd_allreduce: 1107.43 | step: 559.98
+[Rank 0] time (ms) | optimizer_allgather: 548.84 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.17 | bwd_microstep: 1160.95 | bwd_inner_microstep: 60.90 | bwd_allreduce_microstep: 1099.99 | step_microstep: 560.49
+[Rank 0] time (ms) | fwd: 33.15 | bwd: 1160.96 | bwd_inner: 60.91 | bwd_allreduce: 1100.00 | step: 560.49
+[Rank 0] time (ms) | optimizer_allgather: 550.70 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.16 | bwd_microstep: 1161.44 | bwd_inner_microstep: 60.83 | bwd_allreduce_microstep: 1100.56 | step_microstep: 562.32
+[Rank 0] time (ms) | fwd: 33.13 | bwd: 1161.45 | bwd_inner: 60.83 | bwd_allreduce: 1100.57 | step: 562.32
+[Rank 0] time (ms) | optimizer_allgather: 548.34 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.14 | bwd_microstep: 1161.00 | bwd_inner_microstep: 60.97 | bwd_allreduce_microstep: 1099.99 | step_microstep: 560.11
+[Rank 0] time (ms) | fwd: 33.12 | bwd: 1161.01 | bwd_inner: 60.97 | bwd_allreduce: 1100.00 | step: 560.11
+[Rank 0] time (ms) | optimizer_allgather: 556.92 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.19 | bwd_microstep: 1160.95 | bwd_inner_microstep: 60.92 | bwd_allreduce_microstep: 1099.98 | step_microstep: 568.60
+[Rank 0] time (ms) | fwd: 33.17 | bwd: 1160.96 | bwd_inner: 60.91 | bwd_allreduce: 1099.99 | step: 568.60
+[Rank 0] time (ms) | optimizer_allgather: 548.62 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.31 | bwd_microstep: 1160.63 | bwd_inner_microstep: 60.97 | bwd_allreduce_microstep: 1099.61 | step_microstep: 560.16
+[Rank 0] time (ms) | fwd: 33.29 | bwd: 1160.65 | bwd_inner: 60.97 | bwd_allreduce: 1099.62 | step: 560.15
+[Rank 0] time (ms) | optimizer_allgather: 548.52 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.24 | bwd_microstep: 1161.48 | bwd_inner_microstep: 60.84 | bwd_allreduce_microstep: 1100.59 | step_microstep: 560.21
+[Rank 0] time (ms) | fwd: 33.22 | bwd: 1161.49 | bwd_inner: 60.84 | bwd_allreduce: 1100.60 | step: 560.21
+[Rank 0] time (ms) | optimizer_allgather: 550.25 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.20 | bwd_microstep: 1164.66 | bwd_inner_microstep: 60.87 | bwd_allreduce_microstep: 1103.74 | step_microstep: 561.95
+[Rank 0] time (ms) | fwd: 33.18 | bwd: 1164.67 | bwd_inner: 60.87 | bwd_allreduce: 1103.75 | step: 561.95
+[Rank 0] time (ms) | optimizer_allgather: 549.05 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.13 | bwd_microstep: 1160.96 | bwd_inner_microstep: 61.03 | bwd_allreduce_microstep: 1099.88 | step_microstep: 560.63
+[Rank 0] time (ms) | fwd: 33.10 | bwd: 1160.98 | bwd_inner: 61.03 | bwd_allreduce: 1099.89 | step: 560.63
+[Rank 0] time (ms) | optimizer_allgather: 548.45 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.38 | bwd_microstep: 1163.87 | bwd_inner_microstep: 61.32 | bwd_allreduce_microstep: 1102.52 | step_microstep: 560.43
+[Rank 0] time (ms) | fwd: 33.36 | bwd: 1163.88 | bwd_inner: 61.32 | bwd_allreduce: 1102.52 | step: 560.43
+[Rank 0] time (ms) | optimizer_allgather: 548.37 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.08 | bwd_microstep: 1164.11 | bwd_inner_microstep: 60.91 | bwd_allreduce_microstep: 1103.15 | step_microstep: 560.07
+[Rank 0] time (ms) | fwd: 33.07 | bwd: 1164.13 | bwd_inner: 60.91 | bwd_allreduce: 1103.16 | step: 560.06
+[Rank 0] time (ms) | optimizer_allgather: 548.61 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.34 | bwd_microstep: 1162.80 | bwd_inner_microstep: 60.86 | bwd_allreduce_microstep: 1101.89 | step_microstep: 560.16
+[Rank 0] time (ms) | fwd: 33.31 | bwd: 1162.81 | bwd_inner: 60.86 | bwd_allreduce: 1101.90 | step: 560.15
+[Rank 0] time (ms) | optimizer_allgather: 548.41 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.24 | bwd_microstep: 1160.79 | bwd_inner_microstep: 60.92 | bwd_allreduce_microstep: 1099.82 | step_microstep: 560.00
+[Rank 0] time (ms) | fwd: 33.22 | bwd: 1160.80 | bwd_inner: 60.92 | bwd_allreduce: 1099.83 | step: 559.99
+[Rank 0] time (ms) | optimizer_allgather: 548.60 | optimizer_gradients: 0.66 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.08 | bwd_microstep: 1165.52 | bwd_inner_microstep: 60.89 | bwd_allreduce_microstep: 1104.59 | step_microstep: 560.29
+[Rank 0] time (ms) | fwd: 33.06 | bwd: 1165.54 | bwd_inner: 60.89 | bwd_allreduce: 1104.59 | step: 560.29
+[Rank 0] time (ms) | optimizer_allgather: 548.70 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 32.81 | bwd_microstep: 1161.68 | bwd_inner_microstep: 61.03 | bwd_allreduce_microstep: 1100.61 | step_microstep: 560.48
+[Rank 0] time (ms) | fwd: 32.79 | bwd: 1161.69 | bwd_inner: 61.03 | bwd_allreduce: 1100.61 | step: 560.48
+[Rank 0] time (ms) | optimizer_allgather: 548.27 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.14 | bwd_microstep: 1160.77 | bwd_inner_microstep: 60.94 | bwd_allreduce_microstep: 1099.78 | step_microstep: 559.80
+[Rank 0] time (ms) | fwd: 33.12 | bwd: 1160.78 | bwd_inner: 60.94 | bwd_allreduce: 1099.78 | step: 559.80
+[Rank 0] time (ms) | optimizer_allgather: 549.09 | optimizer_gradients: 0.66 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 32.99 | bwd_microstep: 1165.47 | bwd_inner_microstep: 60.90 | bwd_allreduce_microstep: 1104.51 | step_microstep: 560.83
+[Rank 0] time (ms) | fwd: 32.97 | bwd: 1165.48 | bwd_inner: 60.90 | bwd_allreduce: 1104.52 | step: 560.83
+[Rank 0] time (ms) | optimizer_allgather: 548.37 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.25 | bwd_microstep: 1160.93 | bwd_inner_microstep: 60.87 | bwd_allreduce_microstep: 1100.01 | step_microstep: 560.02
+[Rank 0] time (ms) | fwd: 33.23 | bwd: 1160.94 | bwd_inner: 60.87 | bwd_allreduce: 1100.02 | step: 560.02
+[Rank 0] time (ms) | optimizer_allgather: 548.71 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.17 | bwd_microstep: 1161.44 | bwd_inner_microstep: 60.92 | bwd_allreduce_microstep: 1100.47 | step_microstep: 560.45
+[Rank 0] time (ms) | fwd: 33.15 | bwd: 1161.45 | bwd_inner: 60.92 | bwd_allreduce: 1100.48 | step: 560.44
+[Rank 0] time (ms) | optimizer_allgather: 548.35 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.13 | bwd_microstep: 1161.41 | bwd_inner_microstep: 61.03 | bwd_allreduce_microstep: 1100.34 | step_microstep: 560.19
+[Rank 0] time (ms) | fwd: 33.11 | bwd: 1161.43 | bwd_inner: 61.03 | bwd_allreduce: 1100.35 | step: 560.19
+[Rank 0] time (ms) | optimizer_allgather: 548.70 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.47 | bwd_microstep: 1161.38 | bwd_inner_microstep: 61.42 | bwd_allreduce_microstep: 1099.91 | step_microstep: 560.33
+[Rank 0] time (ms) | fwd: 33.45 | bwd: 1161.40 | bwd_inner: 61.42 | bwd_allreduce: 1099.92 | step: 560.33
+[Rank 0] time (ms) | optimizer_allgather: 548.47 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.27 | bwd_microstep: 1179.24 | bwd_inner_microstep: 60.88 | bwd_allreduce_microstep: 1118.30 | step_microstep: 560.14
+[Rank 0] time (ms) | fwd: 33.25 | bwd: 1179.25 | bwd_inner: 60.88 | bwd_allreduce: 1118.31 | step: 560.14
+[Rank 0] time (ms) | optimizer_allgather: 548.94 | optimizer_gradients: 0.66 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.05 | bwd_microstep: 1161.18 | bwd_inner_microstep: 60.98 | bwd_allreduce_microstep: 1100.15 | step_microstep: 560.46
+[Rank 0] time (ms) | fwd: 33.02 | bwd: 1161.20 | bwd_inner: 60.98 | bwd_allreduce: 1100.16 | step: 560.46
+[Rank 0] time (ms) | optimizer_allgather: 548.46 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.24 | bwd_microstep: 1161.12 | bwd_inner_microstep: 60.95 | bwd_allreduce_microstep: 1100.12 | step_microstep: 560.09
+[Rank 0] time (ms) | fwd: 33.22 | bwd: 1161.13 | bwd_inner: 60.95 | bwd_allreduce: 1100.13 | step: 560.09
+[Rank 0] time (ms) | optimizer_allgather: 550.29 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.02 | bwd_microstep: 1163.17 | bwd_inner_microstep: 60.89 | bwd_allreduce_microstep: 1102.22 | step_microstep: 561.96
+[Rank 0] time (ms) | fwd: 33.00 | bwd: 1163.18 | bwd_inner: 60.90 | bwd_allreduce: 1102.23 | step: 561.96
+[Rank 0] time (ms) | optimizer_allgather: 548.73 | optimizer_gradients: 0.66 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.07 | bwd_microstep: 1161.28 | bwd_inner_microstep: 61.02 | bwd_allreduce_microstep: 1100.21 | step_microstep: 560.37
+[Rank 0] time (ms) | fwd: 33.05 | bwd: 1161.30 | bwd_inner: 61.02 | bwd_allreduce: 1100.22 | step: 560.37
+[Rank 0] time (ms) | optimizer_allgather: 548.28 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.19 | bwd_microstep: 1163.37 | bwd_inner_microstep: 60.90 | bwd_allreduce_microstep: 1102.44 | step_microstep: 559.80
+[Rank 0] time (ms) | fwd: 33.17 | bwd: 1163.38 | bwd_inner: 60.90 | bwd_allreduce: 1102.44 | step: 559.80
+[Rank 0] time (ms) | optimizer_allgather: 551.26 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.18 | bwd_microstep: 1160.72 | bwd_inner_microstep: 60.90 | bwd_allreduce_microstep: 1099.78 | step_microstep: 562.79
+[Rank 0] time (ms) | fwd: 33.16 | bwd: 1160.73 | bwd_inner: 60.89 | bwd_allreduce: 1099.79 | step: 562.80
+[Rank 0] time (ms) | optimizer_allgather: 548.42 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 32.98 | bwd_microstep: 1161.14 | bwd_inner_microstep: 60.93 | bwd_allreduce_microstep: 1100.16 | step_microstep: 559.98
+[Rank 0] time (ms) | fwd: 32.96 | bwd: 1161.15 | bwd_inner: 60.93 | bwd_allreduce: 1100.17 | step: 559.99
+[Rank 0] time (ms) | optimizer_allgather: 548.17 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.00 | bwd_microstep: 1161.57 | bwd_inner_microstep: 60.97 | bwd_allreduce_microstep: 1100.55 | step_microstep: 560.12
+[Rank 0] time (ms) | fwd: 32.98 | bwd: 1161.58 | bwd_inner: 60.97 | bwd_allreduce: 1100.56 | step: 560.12
+[Rank 0] time (ms) | optimizer_allgather: 548.98 | optimizer_gradients: 0.65 | optimizer_step: 1.31
+[Rank 0] time (ms) | fwd_microstep: 33.27 | bwd_microstep: 1164.34 | bwd_inner_microstep: 60.95 | bwd_allreduce_microstep: 1103.35 | step_microstep: 560.52
+[Rank 0] time (ms) | fwd: 33.25 | bwd: 1164.36 | bwd_inner: 60.95 | bwd_allreduce: 1103.36 | step: 560.52
+[Rank 0] time (ms) | optimizer_allgather: 548.27 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.41 | bwd_microstep: 1164.04 | bwd_inner_microstep: 61.26 | bwd_allreduce_microstep: 1102.72 | step_microstep: 560.08
+[Rank 0] time (ms) | fwd: 33.39 | bwd: 1164.05 | bwd_inner: 61.26 | bwd_allreduce: 1102.73 | step: 560.08
+[Rank 0] time (ms) | optimizer_allgather: 548.48 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.32 | bwd_microstep: 1160.91 | bwd_inner_microstep: 60.94 | bwd_allreduce_microstep: 1099.92 | step_microstep: 560.01
+[Rank 0] time (ms) | fwd: 33.30 | bwd: 1160.92 | bwd_inner: 60.94 | bwd_allreduce: 1099.93 | step: 560.01
+[Rank 0] time (ms) | optimizer_allgather: 548.84 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.02 | bwd_microstep: 1164.89 | bwd_inner_microstep: 60.95 | bwd_allreduce_microstep: 1103.89 | step_microstep: 560.30
+[Rank 0] time (ms) | fwd: 33.00 | bwd: 1164.90 | bwd_inner: 60.95 | bwd_allreduce: 1103.90 | step: 560.30
+[Rank 0] time (ms) | optimizer_allgather: 548.49 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.16 | bwd_microstep: 1161.02 | bwd_inner_microstep: 60.97 | bwd_allreduce_microstep: 1100.00 | step_microstep: 560.08
+[Rank 0] time (ms) | fwd: 33.14 | bwd: 1161.03 | bwd_inner: 60.97 | bwd_allreduce: 1100.01 | step: 560.09
+[Rank 0] time (ms) | optimizer_allgather: 548.32 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.08 | bwd_microstep: 1161.59 | bwd_inner_microstep: 60.93 | bwd_allreduce_microstep: 1100.61 | step_microstep: 560.04
+[Rank 0] time (ms) | fwd: 33.06 | bwd: 1161.60 | bwd_inner: 60.93 | bwd_allreduce: 1100.62 | step: 560.04
+[Rank 0] time (ms) | optimizer_allgather: 548.82 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.08 | bwd_microstep: 1165.61 | bwd_inner_microstep: 61.03 | bwd_allreduce_microstep: 1104.53 | step_microstep: 560.50
+[Rank 0] time (ms) | fwd: 33.05 | bwd: 1165.62 | bwd_inner: 61.03 | bwd_allreduce: 1104.54 | step: 560.50
+[Rank 0] time (ms) | optimizer_allgather: 548.87 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.09 | bwd_microstep: 1160.84 | bwd_inner_microstep: 60.93 | bwd_allreduce_microstep: 1099.85 | step_microstep: 560.45
+[Rank 0] time (ms) | fwd: 33.07 | bwd: 1160.85 | bwd_inner: 60.93 | bwd_allreduce: 1099.86 | step: 560.45
+[Rank 0] time (ms) | optimizer_allgather: 548.42 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.06 | bwd_microstep: 1164.75 | bwd_inner_microstep: 60.96 | bwd_allreduce_microstep: 1103.74 | step_microstep: 560.06
+[Rank 0] time (ms) | fwd: 33.04 | bwd: 1164.76 | bwd_inner: 60.96 | bwd_allreduce: 1103.75 | step: 560.06
+[Rank 0] time (ms) | optimizer_allgather: 548.53 | optimizer_gradients: 0.65 | optimizer_step: 1.30
+[Rank 0] time (ms) | fwd_microstep: 33.18 | bwd_microstep: 1165.71 | bwd_inner_microstep: 60.94 | bwd_allreduce_microstep: 1104.72 | step_microstep: 560.46
+[Rank 0] time (ms) | fwd: 33.16 | bwd: 1165.72 | bwd_inner: 60.94 | bwd_allreduce: 1104.73 | step: 560.45
+[after training is done] datetime: 2025-11-22 00:30:52 
+[2025-11-22 00:30:56,000] [INFO] [launch.py:367:main] Process 3978959 exits successfully.
